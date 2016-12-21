@@ -31,7 +31,7 @@
     "del": "^2.1.0",
     "fs-extra": "^0.26.2",
     "is-admin": "^1.0.2",
-    "node-windows": "https://github.com/AmbulApps/node-windows",
+    "node-windows-netfx-4": "^0.1.12",
     "pm2": "0.15.10",
     "promisify-node": "^0.3.0"
   },
