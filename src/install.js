@@ -18,7 +18,7 @@ module.exports = co.wrap(function*(name) {
     yield common.admin_warning();
 
     let service = new Service({
-        name: name || 'PM2',
+        name: name || 'AmbulApps PM2',
         script: path.join(__dirname, 'service.js')
     });
 
@@ -29,7 +29,7 @@ module.exports = co.wrap(function*(name) {
         throw new Error('Previous daemon still in use, please stop or uninstall existing service before reinstalling.');
     }
 
-    // NOTE: We don't do (name = name || 'PM2') above so we don't end up
+    // NOTE: We don't do (name = name || 'AmbulApps PM2') above so we don't end up
     // writing out a sid_file for default name
     yield* save_sid_file(name);
 

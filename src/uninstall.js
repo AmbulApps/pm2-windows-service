@@ -30,8 +30,8 @@ module.exports = co.wrap(function*(name) {
         // No sid_file, just keep our current name
     }
 
-    // If we don't have a name by now, then default to 'PM2'
-    name = name || 'PM2';
+    // If we don't have a name by now, then default to 'AmbulApps PM2'
+    name = name || 'AmbulApps PM2';
 
     let service = new Service({
             name: name,
