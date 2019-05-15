@@ -3,13 +3,13 @@
 const path = require('path'),
     co = require('co'),
     event = require('co-event'),
-    promisify = require('promisify-node'),
-    fsx = promisify('fs-extra'),
+    promisify = require('util').promisify || require('promisify-node'),
+    fsx = require('fs-extra'),
     exec = promisify(require('child_process').exec),
     Service = require('node-windows-netfx-4').Service,
     del = require('del'),
     common = require('./common'),
-    save_dir = path.resolve(process.env.APPDATA, 'pm2-windows-service'),
+    save_dir = path.resolve(process.env.APPDATA, 'pm2-windows-service-netfx-4'),
     sid_file = path.resolve(save_dir, '.sid');
 
 module.exports = co.wrap(function*(name) {

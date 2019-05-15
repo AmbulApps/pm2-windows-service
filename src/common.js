@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path'),
-    promisify = require('promisify-node'),
+    promisify = require('util').promisify || require('promisify-node'),
     del = require('del'),
     is_admin = require('is-admin');
 

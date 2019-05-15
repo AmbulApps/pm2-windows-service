@@ -4,19 +4,19 @@ const assert = require('assert'),
     util = require('util'),
     path = require('path'),
     co = require('co'),
-    promisify = require('promisify-node'),
+    promisify = util.promisify || require('promisify-node'),
     exec = promisify(require('child_process').exec),
     node_win = require('node-windows-netfx-4'),
     elevate = promisify(node_win.elevate),
     Service = node_win.Service,
-    fsx = promisify('fs-extra'),
+    fsx = require('fs-extra'),
     temp = require('temp').track(),
     mkdir_temp = promisify(temp.mkdir),
     sid = get_sid();
 
 co(function*() {
     // We deploy everything to a temp dir to avoid creating daemon files in this repo
-    let temp_dir = yield mkdir_temp('pm2-windows-service-test');
+    let temp_dir = yield mkdir_temp('pm2-windows-service-netfx-4-test');
 
     // Use npm to install ourselves to the temp dir
     // First thing we need is a skeleton package.json in the temp dir (otherwise it doesn't install there)
@@ -26,10 +26,10 @@ co(function*() {
     // Now we can 'npm install' there
     let package_dir = path.resolve(__dirname, '..');
     console.log('Deploying copy of package to temp dir to conduct test from...');
-    yield exec('npm i "' + package_dir + '"', { cwd: temp_dir });
+    yield exec('npm i "' + package_dir + '"', { cwd: temp_dir }); 
 
     // Finally, we require in our copy from the temp dir
-    const pm2ws = require(path.resolve(temp_dir, 'node_modules', 'pm2-windows-service'));
+    const pm2ws = require(path.resolve(temp_dir, 'node_modules', 'pm2-windows-service-netfx-4'));
 
     console.log('Installing service...');
     yield pm2ws.install(sid);
