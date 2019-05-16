@@ -17,9 +17,9 @@ let globals_dir = process.env.PM2_SERVICE_PM2_DIR;
 if(!globals_dir) {
     try {
         // Get a string from the buffer and remove the trailing newline
-        globals_dir = execSync('npm get prefix').toString().replace(/\r?\n$/, '') + '/node_modules/pm2';
+        globals_dir = path.join(execSync('npm get prefix').toString().replace(/\r?\n$/, ''), '/node_modules/pm2');
     } catch(ex) {
-        // Can't get global version of pm2 :(
+        console.warn('Global PM2 package not found');
     }
 }
 
@@ -28,7 +28,7 @@ if(globals_dir) {
     try {
         pm2 = require(globals_dir);
     } catch(ex) {
-        // Looks like it didn't work, will just have to carry on with local...
+        console.warn('Could not use specified PM2 package')
     }
 }
 
