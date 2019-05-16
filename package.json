@@ -32,7 +32,7 @@
     "fs-extra": "^4.0.2",
     "is-admin": "^1.0.2",
     "node-windows-netfx-4": "^0.1.12",
-    "pm2": "0.15.10",
+    "pm2": "^3.5.0",
     "promisify-node": "^0.3.0"
   },
   "engines": {
